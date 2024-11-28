@@ -31,14 +31,8 @@ public:
     {
         cout << name << "\t" << sp << "\t" << continent << "\t" << kg << endl;
     }
-    void Eat()
-    {
-        cout << "Food" << endl;
-    }
-    void Sound()
-    {
-        cout << "Sound" << endl;
-    }
+    virtual void Eat() = 0;
+    virtual void Sound() = 0;
 };
 
 class Elephant :public Animal
@@ -104,24 +98,27 @@ public:
 
 int main()
 {
-    Elephant obj1("Indian", "Elephant", "Asia", 5000);
-    obj1.Print();
-    obj1.Eat();
-    obj1.Sound();
-
-    Parrot obj2("Macaw", "Parrot", "South America", 1.5);
-    obj2.Print();
-    obj2.Eat();
-    obj2.Sound();
-
-    Dog obj3("Golden retriever", "Dog", "Europe", 30);
-    obj3.Print();
-    obj3.Eat();
-    obj3.Sound();
-
-    Cat obj4("Bengal", "Cat", "North America", 4);
-    obj4.Print();
-    obj4.Eat();
-    obj4.Sound();
+    int choice;
+    Animal* animal = nullptr;
+    cout << "Choose an animal: 1 - Elephant, 2 - Parrot, 3 - Dog, 4 - Cat: ";
+    cin >> choice;
+    switch (choice)
+    {
+    case(1):
+        animal = new Elephant("Indian", "Elephant", "Asia", 5000);
+        break;
+    case(2):
+        animal = new Parrot("Macaw", "Parrot", "South America", 1.5);
+        break;
+    case(3):
+        animal = new Dog("Golden retriever", "Dog", "Europe", 30);
+        break;
+    case(4):
+        animal = new Cat("Bengal", "Cat", "North America", 4);
+        break;
+    } 
+    animal->Print();
+    animal->Eat();
+    animal->Sound();
 }
 
